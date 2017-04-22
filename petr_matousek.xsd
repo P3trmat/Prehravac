@@ -1,0 +1,195 @@
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="Prehravac-nastaveni">
+    <xs:annotation>
+      <xs:documentation>Odkaz na Github: https://github.com/P3trmat/Prehravac.git</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="hlavni"> <!-- Hlavní nastavení -->
+          <xs:annotation>
+            <xs:documentation>Hlavni</xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element type="xs:string" name="jazyk"/>
+              <xs:element type="xs:byte" name="automaticky-aktualizovat"/>
+              <xs:element name="vzhled-a-chovani">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element type="xs:string" name="vzhled"/>
+                    <xs:element type="xs:byte" name="povolit-vice-instanci"/>
+                    <xs:element type="xs:byte" name="integrovat-video-do-rozhrani"/>
+                    <xs:element type="xs:byte" name="posledni-pozice"/>
+                    <xs:element name="po-ukonceni-prehravani">
+                      <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                          <xs:enumeration value="xs:Vypnout"/>
+                          <xs:enumeration value="xs:Zastavit"/>
+                          <xs:enumeration value="xs:Prehrat znovu"/>
+                        </xs:restriction>
+                      </xs:simpleType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="automaticky-pouzivat-pro-tyto-typy-souboru">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element type="xs:byte" name="mp3"/>
+                    <xs:element type="xs:byte" name="mkv"/>
+                    <xs:element type="xs:byte" name="mp4"/>
+                    <xs:element type="xs:byte" name="avi"/>
+                    <xs:element type="xs:byte" name="MPG"/>
+                    <xs:element type="xs:byte" name="MPEG"/>
+                    <xs:element type="xs:byte" name="FLAC"/>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element type="xs:byte" name="zobrazit-ikonu-v-panelu"/>
+              <xs:element type="xs:byte" name="resetovat-nastaveni"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element> <!-- Konec hlaví nastavení -->
+        <xs:element name="Video"> <!-- Video -->
+          <xs:annotation>
+            <xs:documentation>Video</xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element type="xs:byte" name="povolit-video"/>
+              <xs:element name="obecne">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element type="xs:byte" name="vzdy-cela-obrazovka"/>
+                    <xs:element type="xs:byte" name="nemenit-rozliseni-ve-fullscreen"/>
+                    <xs:element type="xs:byte" name="vzdy-navrchu"/>
+                    <xs:element type="xs:integer" name="rychlost-prehravani"/>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element type="xs:string" name="zoom"/>
+              <xs:element name="Barvy">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element type="xs:integer" name="jas"/>
+                    <xs:element type="xs:integer" name="kontrast"/>
+                    <xs:element type="xs:integer" name="sytost"/>
+                    <xs:element type="xs:integer" name="odstin"/>
+                    <xs:element type="xs:byte" name="vychozi"/>
+                    <xs:element type="xs:byte" name="pamatovat-si-nastaveni"/>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="Obraz">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="pomer-stran"/> <!-- Vyber poměru stran -->
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                          <xs:enumeration value="xs:4:3"/>
+                          <xs:enumeration value="xs:16:9"/>
+                          <xs:enumeration value="xs:16:10"/>
+                        </xs:restriction>
+                      </xs:simpleType>
+                    </xs:element>
+                    <xs:element name="rozliseni"/> <!-- Vyber rozliseni -->
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                          <xs:enumeration value="xs:1620x1080"/>
+                          <xs:enumeration value="xs:800x600"/>
+                          <xs:enumeration value="xs:1280x720"/>
+                          <xs:enumeration value="xs:2048x1536"/>
+                        </xs:restriction>
+                      </xs:simpleType>
+                    </xs:element>
+                    <xs:element type="xs:byte" name="oriznout-okraje"/>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>       <!-- konec video -->
+        <xs:element name="Zvuk"> <!-- Zvuk -->
+          <xs:annotation>
+            <xs:documentation>Zvuk</xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element type="xs:byte" name="povolit-zvuk"/>
+              <xs:element name="hlasitost"/>    <!-- Omezení hlasitosti -->
+              <xs:simpleType>
+                        <xs:restriction base="xs:integer">
+                          <xs:minclusive value="0"/>
+                          <xs:maxclusive value="100"/>
+                        </xs:restriction>
+                      </xs:simpleType>
+                    </xs:element>
+              <xs:element type="xs:byte" name="dolby-surround"/>
+              <xs:element type="xs:byte" name="prostorovy-efekt-sluchatek"/>
+              <xs:element type="xs:string" name="vystup"/>
+              <xs:element type="xs:byte" name="vizualizace"/>
+              <xs:element name="zvukova-stopa"/>      <!-- Vyber stopy -->
+              <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                          <xs:enumeration value="xs:stopa1"/>
+                          <xs:enumeration value="xs:stopa2"/>
+                          <xs:enumeration value="xs:stopa3"/>
+                        </xs:restriction>
+                      </xs:simpleType>
+                    </xs:element>
+              <xs:element type="xs:integer" name="vyvazeni-L-P"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="titulky">
+          <xs:annotation> <!-- Konec zvuk -->
+            <xs:documentation>Titulky</xs:documentation>  <!-- Titulky -->
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element type="xs:byte" name="zakazat-titulky"/>
+              <xs:element name="umisteni"/>
+              <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                          <xs:enumeration value="xs:dole uprostred"/>
+                          <xs:enumeration value="xs:nahore uprostred"/>
+                        </xs:restriction>
+                      </xs:simpleType>
+                    </xs:element>
+              <xs:element type="xs:integer" name="zpozdeni"/>
+              <xs:element name="vlastnosti-primarnich-titulku">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element type="xs:string" name="pismo"/>
+                    <xs:element type="xs:integer" name="velikost"/>
+                    <xs:element type="xs:string" name="barva-pisma"/>
+                    <xs:element type="xs:string" name="barva-obrysu"/>
+                    <xs:element type="xs:string" name="sirka-obrysu"/>
+                    <xs:element type="xs:string" name="barva-pozadi"/>
+                    <xs:element type="xs:string" name="pruhlednost-pozadi"/>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element type="xs:byte" name="sekundarni-titulky"/>
+              <xs:element name="vlastnosti-sekundarnich-titulku">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element type="xs:string" name="pismo"/>
+                    <xs:element type="xs:integer" name="velikost"/>
+                    <xs:element type="xs:string" name="barva-pisma"/>
+                    <xs:element type="xs:string" name="barva-obrysu"/>
+                    <xs:element type="xs:string" name="sirka-obrysu"/>
+                    <xs:element type="xs:string" name="barva-pozadi"/>
+                    <xs:element type="xs:string" name="pruhlednost-pozadi"/>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>     <!-- konec Titulky -->
+
+</xs:schema>
+
